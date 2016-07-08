@@ -6,9 +6,31 @@ public class SearchSort {
     //explained in readme.  one solution uses a boolean to check if a swap has been completed or not.  
     //This does not have to be recursive.  Otherwise this method is explained in the readme.
     public static void bubbleSort(String[] arr) {
+    	
+       ArrayList<String> output = new ArrayList<String>(); 
        
-              
+       for(int i = 0; i < arr.length; i++){
+    	   output.add(arr[i]);
+       }
+       
+       for(int i = output.size(); i > 0; i--){
+    	   for(int counter = 0; counter > i - 1; counter++){
+    		   int sorted = output.get(counter).compareTo(output.get(counter + 1));
+    		   if(sorted == 1){
+    			   String oldLeft = output.get(counter);
+    			   String oldRight = output.get(counter + 1);
+    			   
+    			   output.set(counter, oldRight);
+    			   output.set(counter + 1, oldLeft);
+    		   }
+    	   }
+       }
+       
+       String[] outputArray = output.toArray(new String[0]);
+       System.out.println(Arrays.toString(outputArray));
+   
     }
+    
 
     // takes a sorted array and returns the index of the desired string or -1 if not found
     public static int binarySearch(String[] arr, String lookfor) {
@@ -54,7 +76,22 @@ public class SearchSort {
         //read in a file from args[0] and store in an array
         //write bubble sort and test, by printing our your new array
         //before and after calling bubbleSort
+    	
+    	File importedFile = new File(args[0]);
+    	Scanner importFile = new Scanner(importedFile);
+    	ArrayList<String> temp = new ArrayList<String>();
+    	
+    	while(importFile.hasNextLine())
+    		temp.add(importFile.nextLine());
+    	
+    	String[] information = new String[temp.size()];
+    	information = temp.toArray(new String[0]);
+    	System.out.println(Arrays.toString(information));
+    	
+        bubbleSort(information);
         
+        System.out.println(Arrays.toString(information));
+    	
         //Use binarySearch to search for Luke Skywalker, I found him at index 16.
         //test binarySearch with a name that is not in the array.
         
