@@ -13,7 +13,7 @@ public class SearchSort {
     	   output.add(arr[i]);
        }
        
-       for(int i = output.size(); i > 0; i--){
+       /*for(int i = output.size(); i > 0; i--){
     	   for(int counter = 0; counter > i - 1; counter++){
     		   int sorted = output.get(counter).compareTo(output.get(counter + 1));
     		   if(sorted == 1){
@@ -22,6 +22,21 @@ public class SearchSort {
     			   
     			   output.set(counter, oldRight);
     			   output.set(counter + 1, oldLeft);
+    		   }
+    	   }
+       }*/
+       
+       int counter = output.size() - 1;
+       while(counter > 0){
+    	   for(int i = 0; i < counter; i++){
+    		   if(output.get(i).compareTo(output.get(i+1)) == 1){
+    			   String oldLeft = output.get(i);
+    			   String oldRight = output.get(i + 1); 
+    			   
+    			   output.remove(i);
+    			   output.add(i,oldRight);
+    			   output.remove(i+1);
+    			   output.add(i+1,oldLeft);
     		   }
     	   }
        }
